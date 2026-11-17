@@ -1,0 +1,62 @@
+TREINO & DIETA — instalação, backup e atualização
+=================================================
+
+ARQUIVOS (todos na raiz do repositório)
+  index.html            o app inteiro (treino, recordes, dieta, backup)
+  sw.js                 service worker (funcionar offline e receber atualizações)
+  manifest.webmanifest  nome, cores e ícones do app
+  icon-180.png          ícone da Tela de Início do iPhone
+  icon-192.png / icon-512.png
+  LEIA-ME.txt           este arquivo
+
+1) PUBLICAR NO GITHUB PAGES (grátis, uma vez só)
+  1. Entre em github.com com sua conta pessoal > botão "New" (novo repositório).
+  2. Nome: treino-dieta. Marque "Public" (o GitHub Pages grátis exige repositório público;
+     o código fica visível, mas seus DADOS não: eles ficam só no seu iPhone).
+  3. Create repository > "uploading an existing file".
+  4. Arraste os 7 arquivos acima (não a pasta, os arquivos) > "Commit changes".
+  5. Settings > Pages > Source: "Deploy from a branch" > Branch: main / (root) > Save.
+  6. Espere 1–2 minutos. O endereço aparece no topo da página Pages:
+     https://SEU-USUARIO.github.io/treino-dieta/
+
+2) INSTALAR NO IPHONE
+  1. Abra o endereço acima no SAFARI (tem que ser o Safari).
+  2. Botão Compartilhar (quadrado com seta) > "Adicionar à Tela de Início" > Adicionar.
+  3. Abra pelo ícone "Treino". Ele abre em tela cheia e funciona sem internet.
+  Na primeira abertura, o histórico de 05/10 a 16/11 já vem carregado.
+
+3) TRAZER OS DADOS DO ARTIFACT DO CLAUDE
+  Os dados do Claude NÃO passam sozinhos: são outro "endereço", com outro armazenamento.
+  - Treinos/corridas: no artifact, toque "Copiar resumo" (resumo geral) e, no app novo,
+    vá em 💾 Backup > cole no campo de texto > "Importar texto colado".
+    Isso sobrescreve só os treinos presentes no texto e mantém o resto.
+  - Perfil (peso, altura etc.): preencha de novo em ⚙ Perfil.
+  - Dieta e registros de peso: o resumo de texto não carrega esses dados de volta.
+    Se tiver dieta registrada lá, relance os dias que importam.
+
+4) BACKUP (FAÇA TODA SEMANA)
+  - 💾 Backup > "Exportar backup" > no iPhone abre a folha de compartilhar:
+    "Salvar em Arquivos" (iCloud Drive). Nome: treino-dieta-backup-AAAA-MM-DD-HHMM.json
+  - Restaurar: 💾 Backup > "Restaurar de arquivo" > escolha o .json.
+    O app mostra o que tem no arquivo e pede confirmação antes de substituir.
+    Os dados substituídos ficam guardados: "Desfazer última restauração".
+  - O que APAGA seus dados: remover o ícone da Tela de Início, limpar dados do Safari
+    ou trocar de celular. O iOS também pode limpar dados de sites que você não abre por
+    muitas semanas. Atualizar o app NÃO apaga nada.
+
+5) ATUALIZAR O APP
+  1. Altere o index.html e suba o número em DOIS lugares, iguais:
+       index.html  ->  const APP_VERSION='1.0.1';
+       sw.js       ->  const VERSION = '1.0.1';
+  2. No GitHub: repositório > "Add file" > "Upload files" > arraste os arquivos
+     alterados (mesmo nome, ele substitui) > Commit.
+  3. No iPhone, com internet, abra o app, feche e abra de novo.
+     O rodapé mostra a versão ativa. Não precisa reinstalar.
+  Seus registros ficam na chave "plan12kV1" do aparelho; nenhuma atualização mexe nela,
+  desde que você não mude essa chave no código.
+
+6) COMO O APP FUNCIONA PRA SEMPRE
+  Depois da semana 12 do Ciclo 5K o ciclo de 12 semanas recomeça sozinho
+  (Ciclo #2, #3...) com o mesmo plano de corrida e musculação. Para trocar o plano,
+  edite as listas W (corrida) e G (musculação) no index.html, sem alterar os IDs
+  das semanas já registradas.
